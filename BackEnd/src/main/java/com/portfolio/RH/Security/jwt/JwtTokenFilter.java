@@ -16,8 +16,8 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 public class JwtTokenFilter extends OncePerRequestFilter {
 
-    private final static Logger logger = LoggerFactory.getLogger(JwtProvider.class);
-
+    private final static Logger ilogger = LoggerFactory.getLogger(JwtProvider.class);
+    
     @Autowired
     JwtProvider jwtProvider;
     @Autowired
@@ -34,8 +34,8 @@ public class JwtTokenFilter extends OncePerRequestFilter {
                         null, userDetails.getAuthorities());
                 SecurityContextHolder.getContext().setAuthentication(auth);
             }
-        } catch (Exception e) {
-            logger.error("Fallo el metodo doFilterInternal");
+        } catch (ExceptionInInitializerError e) {
+            ilogger.error("Fallo el metodo doFilterInternal");
         }
         filterChain.doFilter(request, response);
     }
@@ -43,7 +43,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
         String header = request.getHeader("Authorization");
         if(header != null && header.startsWith("Bearer"))
         return header.replace("Bearer", "");
-        return null;
+       return null;
     }
 }
 

@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class JwtProvider {
-    private final static Logger logger = LoggerFactory.getLogger(JwtProvider.class);
+    private final static Logger ilogger = LoggerFactory.getLogger(JwtProvider.class);
     
     @Value("${jwt.secret}")
     private String secret;
@@ -44,15 +44,15 @@ public class JwtProvider {
             Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
             return true;
         } catch (MalformedJwtException e){
-            logger.error("Mala formacion de Token");
+            ilogger.error("Mala formacion de Token");
         } catch (UnsupportedJwtException  e){
-            logger.error("Token no soportado");
+            ilogger.error("Token no soportado");
         } catch (ExpiredJwtException e){
-            logger.error("Token expirado");
+            ilogger.error("Token expirado");
         } catch (IllegalArgumentException e){
-            logger.error("Token vacio");
+            ilogger.error("Token vacio");
         } catch (SignatureException e){
-            logger.error("Firma no valida");
+            ilogger.error("Firma no valida");
         } 
         return false;
     }
