@@ -24,7 +24,7 @@ public class Rol {
     public Rol (){
         }
 
-    public Rol(@NotNull RolNombre rolNombre) {
+    public Rol(RolNombre rolNombre) {
         this.rolNombre = rolNombre;
     }
 

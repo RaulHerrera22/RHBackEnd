@@ -7,8 +7,8 @@ import java.util.List;
 
 
 public interface IPersonaService {
-    
-    public List<Persona> GetPersona();
+   
+    public List<Persona> getPersona();
     
     public void savePersona(Persona persona);
     

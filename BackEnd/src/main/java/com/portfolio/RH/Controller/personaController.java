@@ -12,32 +12,34 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/personas")
 @CrossOrigin(origins = "http://localhost:4200")
 public class personaController {
 
     @Autowired
-    IPersonaService ipersonaService;
+    IPersonaService iPersonaService;
 
-    @GetMapping("personas/traer")
+    @GetMapping("/personas/traer")
     public List<Persona> getPersona() {
-        return ipersonaService.GetPersona();
+        return iPersonaService.getPersona();
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/personas/crear")
     public String createPersona(@RequestBody Persona persona) {
-        ipersonaService.savePersona(persona);
+        iPersonaService.savePersona(persona);
         return "La persona fue creada correctamente";
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/personas/borrar/{id}")
     public String deletePersona(@PathVariable Long id) {
-        ipersonaService.deletePersona(id);
+        iPersonaService.deletePersona(id);
         return "La persona fue eliminada correctamente";
     }
 
@@ -48,13 +50,18 @@ public class personaController {
             @RequestParam("apellido") String nuevoApellido,
             @RequestParam("img") String nuevaImg
     ) {
-        Persona persona = ipersonaService.findPersona(id);
+        Persona persona = iPersonaService.findPersona(id);
 
         persona.setNombre(nuevoNombre);
         persona.setApellido(nuevoApellido);
         persona.setImg(nuevaImg);
 
-        ipersonaService.savePersona(persona);
+        iPersonaService.savePersona(persona);
         return persona;
+    }
+
+    @GetMapping("/personas/traer/perfil")
+    public Persona findPersona() {
+        return iPersonaService.findPersona((long) 1);
     }
 }
