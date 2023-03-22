@@ -10,9 +10,13 @@ public interface IPersonaService {
    
     public List<Persona> getPersona();
     
-    public void savePersona(Persona persona);
+    public void crearPersona(Persona persona);
     
-    public void deletePersona(Long id);
+    public void borrarPersona(int id);
     
-    public Persona findPersona(Long id);
+    public Persona findPersona(int id);
+    
+    public void editarPersona(Persona persona);
+    
+
 }

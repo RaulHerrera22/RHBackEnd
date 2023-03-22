@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
   
 
   onLogin():void{
-    this.loginUsuario=new LoginUsuario(this.nombreUsuario,this.password);
+    this.loginUsuario=new LoginUsuario(this.nombreUsuario, this.password);
     this.authService.login(this.loginUsuario).subscribe(data =>{
         this.isLogged=true;
         this.isLogginFail=false;
