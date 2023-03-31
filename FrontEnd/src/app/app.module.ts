@@ -16,6 +16,13 @@ import {HttpClientModule} from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule } from '@angular/forms';
+import { interceptorProvider } from './service/interceptor-service';
+import { RouterModule } from '@angular/router';
+import { EditExperienciaComponent } from './components/experiencia-l/edit-experiencia.component';
+import { NewExperienciaComponent } from './components/experiencia-l/new-experiencia.component';
+import { EditeducacionComponent } from './components/educacion/editeducacion.component';
+import { NeweducacionComponent } from './components/educacion/neweducacion.component';
+
 
 @NgModule({
   declarations: [
@@ -30,16 +37,22 @@ import { FormsModule } from '@angular/forms';
     ProyectosComponent,
     FooterComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    EditExperienciaComponent,
+    NewExperienciaComponent,
+    EditeducacionComponent,
+    NeweducacionComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgCircleProgressModule.forRoot({}),
     HttpClientModule,
-    FormsModule
-  ],
-  providers: [],
+    FormsModule,
+    RouterModule
+    
+    ],
+  providers: [interceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

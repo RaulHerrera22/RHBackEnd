@@ -1,33 +1,34 @@
 <div class="row">
     <h1>Educacion</h1>
-    <div class="col-lg-1"></div>
-    <div class="col-lg-11">
-        <ul>
-            <li>
-                <h1>Educacion 1</h1> - <h3>(years)</h3>
-            </li>
-            <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eius veritatis repellendus et nihil hic tenetur obcaecati sint modi atque deleniti consequuntur omnis praesentium totam quas sed fugiat, at magnam alias.
-            </p>
-        </ul>
-        <ul>
-            <li>
-                <h1>Educacion 2</h1> - <h3>(years)</h3>
-            </li>
-            <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eius veritatis repellendus et nihil hic tenetur obcaecati sint modi atque deleniti consequuntur omnis praesentium totam quas sed fugiat, at magnam alias.
-            </p>
-        </ul>
-        <ul>
-            <li>
-                <h1>Educacion 3</h1> - <h3>(years)</h3>
-            </li>
-            <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eius veritatis repellendus et nihil hic tenetur obcaecati sint modi atque deleniti consequuntur omnis praesentium totam quas sed fugiat, at magnam alias.
-            </p>
-        </ul>
+    <div class="col-lg-2">
+        <button type="button" class="btn btn-dark" routerLink="/nuevaedu" *ngIf="isLogged">
+            Agregar Educacion
+        </button>
+    </div>
 
+    <div class="col lg 1"></div>
+    <div class="col-ng-11">
+        <table class="table">
+            <tbody>
+                <tr *ngFor="let Educacion of educacion">
+                    <td>
+                        <h2>{{Educacion.nombreE}}</h2>
+                    </td>
+                    <td>{{Educacion.descripcionE}}</td>
+                    <td *ngIf="isLogged">
+                        <button class="btn btn-light" routerLink="/editedu/{{Educacion.id}}">
+                            <i class="bi bi-pencil-fill"></i>
+                            EDITAR
+                        </button>
+                    </td>
+                    <td *ngIf="isLogged">
+                        <button class="btn btn-danger" (click)="delete(Educacion.id)"></button>
+                        <i class="bi bi-trash-fill"></i>BORRAR</td>
+                    <td>BORRAR</td>
+                </tr>
+            </tbody>
+
+        </table>
     </div>
 
 </div>
-
