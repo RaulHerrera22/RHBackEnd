@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
-import { persona } from 'src/app/model/persona.model';
+import { Persona } from 'src/app/model/persona.model';
 import { PersonaService } from 'src/app/service/persona.service';
+import { TokenService } from 'src/app/service/token.service';
 
 
 
@@ -13,24 +14,24 @@ import { PersonaService } from 'src/app/service/persona.service';
 })
 export class AboutMeComponent implements OnInit {
   
-  persona: persona = new persona ("","","");
-   
-  constructor(private personaService: PersonaService,
-    private router: Router) { }
+  persona: Persona = new Persona ("", "" , "", "");
 
-ngOnInit(): void {
-   this.personaService.getPersona().subscribe(data => {this.persona = data}
-   ,
-   err => {
-     alert("Error al cargar los datos del perfil.");
-     this.volver();
-   }
- );
+  constructor(public personaService: PersonaService, private tokenService: TokenService) { }
+
+  isLogged = false;
+
+  ngOnInit(): void {
+    this.cargarPersona();
+    if (this.tokenService.getToken()) {
+      this.isLogged = true;
+    } else {
+      this.isLogged = false;
+    }
   }
 
- volver(): void {
-  this.router.navigate(['/']);
-}
+  cargarPersona() {
+    this.personaService.detail(1).subscribe(data => { this.persona = data })
+  }
 }
 
 
