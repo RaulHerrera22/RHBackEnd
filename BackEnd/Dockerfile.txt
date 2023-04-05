@@ -1,0 +1,4 @@
+FROM amazoncorretto:alpine:3.17
+MAINTAINER RH
+COPY target/RH-0.0.1-SNAPSHOT RH-0.0.1-SNAPSHOT
+ENTRYPOINT ["java","-jar","/RH-0.0.1-SNAPSHOT"]
